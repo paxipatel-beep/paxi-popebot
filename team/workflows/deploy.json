@@ -1,0 +1,30 @@
+{
+  "name": "Production Deploy",
+  "description": "Workflow for deploying the current build to production with pre-flight checks.",
+  "steps": [
+    {
+      "agent": "QATester",
+      "task": "Run the full test suite (unit, integration, E2E). Generate a test report. Block deployment if critical tests fail."
+    },
+    {
+      "agent": "DevOps",
+      "task": "Run pre-deployment checks: build succeeds, environment variables set, database migrations ready. Create a deployment snapshot/backup.",
+      "dependsOn": ["QATester"]
+    },
+    {
+      "agent": "DevOps",
+      "task": "Execute deployment: push to production, run migrations, verify health checks pass, confirm SSL and DNS. Roll back if health checks fail.",
+      "dependsOn": ["DevOps"]
+    },
+    {
+      "agent": "QATester",
+      "task": "Post-deployment smoke tests: verify critical user flows work in production. Report any issues immediately.",
+      "dependsOn": ["DevOps"]
+    },
+    {
+      "agent": "ProjectManager",
+      "task": "Confirm deployment success. Notify stakeholders. Update project status.",
+      "dependsOn": ["QATester"]
+    }
+  ]
+}

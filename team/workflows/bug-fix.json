@@ -1,0 +1,30 @@
+{
+  "name": "Bug Fix",
+  "description": "Workflow for triaging, fixing, testing, and deploying bug fixes.",
+  "steps": [
+    {
+      "agent": "ProjectManager",
+      "task": "Triage the bug report. Determine severity, affected components, and assign to the appropriate developer (Frontend or Backend)."
+    },
+    {
+      "agent": "FrontendDev",
+      "task": "If the bug is frontend-related: reproduce the issue, identify root cause, implement the fix, and write a regression test.",
+      "dependsOn": ["ProjectManager"]
+    },
+    {
+      "agent": "BackendDev",
+      "task": "If the bug is backend-related: reproduce the issue, identify root cause, implement the fix, and write a regression test.",
+      "dependsOn": ["ProjectManager"]
+    },
+    {
+      "agent": "QATester",
+      "task": "Verify the fix resolves the original issue. Run regression tests to confirm no new issues. Test edge cases around the fixed area.",
+      "dependsOn": ["FrontendDev", "BackendDev"]
+    },
+    {
+      "agent": "DevOps",
+      "task": "Deploy the hotfix to production. Monitor for errors post-deployment.",
+      "dependsOn": ["QATester"]
+    }
+  ]
+}
