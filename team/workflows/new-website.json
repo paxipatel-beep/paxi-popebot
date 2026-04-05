@@ -1,0 +1,40 @@
+{
+  "name": "Build New Website",
+  "description": "End-to-end workflow for building a new website from requirements to deployment.",
+  "steps": [
+    {
+      "agent": "ProjectManager",
+      "task": "Analyze the project brief. Break requirements into tasks for design, frontend, backend, testing, and deployment. Create a project plan with milestones and assign tasks to team members."
+    },
+    {
+      "agent": "UIDesigner",
+      "task": "Create the design system: color palette, typography, spacing scale, component specs, and page layouts. Output Tailwind config and component wireframes.",
+      "dependsOn": ["ProjectManager"]
+    },
+    {
+      "agent": "BackendDev",
+      "task": "Set up the project scaffold, database schema, API endpoints, authentication, and any third-party integrations specified in the requirements.",
+      "dependsOn": ["ProjectManager"]
+    },
+    {
+      "agent": "FrontendDev",
+      "task": "Build all pages and components following the design system. Integrate with backend APIs. Ensure responsive design and accessibility.",
+      "dependsOn": ["UIDesigner", "BackendDev"]
+    },
+    {
+      "agent": "QATester",
+      "task": "Write and run test suites (unit, integration, E2E). Test all user flows, edge cases, responsive behavior, and cross-browser compatibility. File bugs and verify fixes.",
+      "dependsOn": ["FrontendDev"]
+    },
+    {
+      "agent": "DevOps",
+      "task": "Set up CI/CD pipeline, Docker configuration, production deployment, SSL, monitoring, and health checks. Deploy to production.",
+      "dependsOn": ["QATester"]
+    },
+    {
+      "agent": "ProjectManager",
+      "task": "Final review: verify all requirements are met, all tests pass, deployment is stable. Compile delivery report.",
+      "dependsOn": ["DevOps"]
+    }
+  ]
+}

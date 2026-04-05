@@ -1,0 +1,31 @@
+{
+  "name": "paxi-popebot",
+  "version": "1.0.0",
+  "description": "Deploy Paperclip AI to Hostinger VPS and configure an AI website development team",
+  "type": "module",
+  "main": "src/index.ts",
+  "bin": {
+    "paxi-popebot": "./src/index.ts"
+  },
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "deploy": "tsx src/index.ts deploy",
+    "status": "tsx src/index.ts status",
+    "team:setup": "tsx src/index.ts team setup",
+    "team:list": "tsx src/index.ts team list",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Paxi Web Studio",
+  "description": "AI-powered website development team capable of building full-stack web apps, static sites, e-commerce stores, and everything in between.",
+  "settings": {
+    "defaultCurrency": "USD",
+    "timezone": "UTC",
+    "approvalRequired": true,
+    "maxConcurrentAgents": 6,
+    "auditLogging": true
+  }
+}
